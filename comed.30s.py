@@ -46,11 +46,11 @@ elif float(priceUSD) > 10:
 	alertColor = "red"
 
 priceTimeUTC = currentPrice['millisUTC']
-priceTimeInChicago = tz_from_utc_ms_ts(int(priceTimeUTC), pytz.timezone(tz))
+priceTimeInLocalTZ = tz_from_utc_ms_ts(int(priceTimeUTC), pytz.timezone(tz))
 # print(str(priceUSD)+"¢ :electric_plug: | symbolize=false color="+alertColor)
 print(str(priceUSD)+"¢ :gauge: | sfcolor="+alertColor)
 print ("---")
-print ("as of "+priceTimeInChicago.strftime('%H:%M%p'))
+print ("as of "+priceTimeInLocalTZ.strftime('%H:%M%p'))
 print ("---")
 print("Original JSON: | href="+comedCurrentApi)
 print(data[0])
