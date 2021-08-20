@@ -13,6 +13,9 @@ import datetime as dt
 import pytz
 import json
 
+comedCurrentApi = "https://hourlypricing.comed.com/api?type=5minutefeed"
+tz = "America/Chicago"
+
 def tz_from_utc_ms_ts(utc_ms_ts, tz_info):
     """Given millisecond utc timestamp and a timezone return dateime
 
@@ -26,7 +29,6 @@ def tz_from_utc_ms_ts(utc_ms_ts, tz_info):
     # set the timezone to UTC, and then convert to desired timezone
     return utc_datetime.replace(tzinfo=pytz.timezone('UTC')).astimezone(tz_info)
 
-comedCurrentApi = "https://hourlypricing.comed.com/api?type=5minutefeed"
 url = requests.get(comedCurrentApi)
 text = url.text
 
@@ -44,7 +46,7 @@ elif float(priceUSD) > 10:
 	alertColor = "red"
 
 priceTimeUTC = currentPrice['millisUTC']
-priceTimeInChicago = tz_from_utc_ms_ts(int(priceTimeUTC), pytz.timezone('America/Chicago'))
+priceTimeInChicago = tz_from_utc_ms_ts(int(priceTimeUTC), pytz.timezone(tz))
 # print(str(priceUSD)+"¢ :electric_plug: | symbolize=false color="+alertColor)
 print(str(priceUSD)+"¢ :gauge: | sfcolor="+alertColor)
 print ("---")
