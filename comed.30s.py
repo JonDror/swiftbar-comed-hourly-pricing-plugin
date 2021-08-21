@@ -50,7 +50,7 @@ print ("---")
 print ("updated at "+utc_ms_to_timezone(priceTimeUTC))
 print ("---")
 print ("History:")
-for x in range(6):
+for x in range(1,6):
   print(utc_ms_to_timezone(data[x]['millisUTC'])+": "+data[x]['price']+"¢")
 print ("---")
 print("Click here to see original JSON | href="+comedCurrentApi)
